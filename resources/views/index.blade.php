@@ -1,20 +1,25 @@
-<!DOCTYPE html>
-<html lang="jp">
-<head>
-    <meta charset="uft-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <title>Lunchmap</title>
-    <style>body {padding: 10px;}</style>
-</head>
-<body>
+@extends('layout')
+
+@section('content')
     <h1>お店一覧</h1>
 
-    @foreach ($shops as $shop)
-        <p>
-            {{$shop->category->name}},
-            {{$shop->name}},
-            {{$shop->address}}
-        </p>
-    @endforeach
-</body>
-</html>
+    <table class='table table-striped table-hover'>
+        <tr>
+            <th>カテゴリ</th><th>店名</th><th>住所</th>
+        </tr>
+        @foreach ($shops as $shop)
+            <tr>
+                <td>{{$shop->category->name}}</td>
+                <td>
+                    <a href={{route('shop.detail',['id' => $shop->id])}}>
+                        {{$shop->name}}
+                    </a>
+                </td>
+                <td>{{$shop->address}}</td>
+            </tr>
+        @endforeach
+    </table>
+    <div>
+        <a href={{route('shop.new')}} class='btn btn-outline-primary'>新しいお店</a>
+    </div>
+@endsection
