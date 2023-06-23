@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Shop;
-use App\Category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ShopController extends Controller
@@ -22,7 +22,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        $categories = Category::all()->pluck('name','id');
+        $categories = Category::all()->pluck('name','id');//要素の中から指定したメソッドを取り出す
         return view('new', ['categories' => $categories]);
     }
 
@@ -30,7 +30,7 @@ class ShopController extends Controller
      * Store a newly created resource in storage.
      * 投稿内容を保存
      */
-    public function store(Request $request)
+    public function store()
     {
         $shop = new Shop;
         $shop->name = request('name');
@@ -57,7 +57,7 @@ class ShopController extends Controller
     public function edit(Shop $shop, $id)
     {
         $shop = Shop::find($id);
-        $categoriese = Category::all()->pluck('name','id');
+        $categories = Category::all()->pluck('name','id');
         return view('edit', ['shop' => $shop, 'categories' => $categories]);
     }
 
@@ -83,4 +83,6 @@ class ShopController extends Controller
         $shop->delete();
         return redirect('/shops');
     }
+
+    
 }
