@@ -8,7 +8,7 @@
     </div>
 
     <i frame id='map'
-        src='グーグルマップのUrLとキー{{ $shop->address }}'
+        src='https://www.google.co.jp/mapsAIzaSyAd5PeUhlKPM1nh3r6vXIa6KChj0vw8RIQ{{ $shop->address }}'
         width='100%'
         height='320'
         frameborder='0'>
